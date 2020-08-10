@@ -5,9 +5,6 @@ import { useQuery } from '@apollo/client';
 import { getProductsQuery } from '../apollo/client/queries';
 import { IProductList } from '../interface/IProductList';
 
-// const client = new ApolloClient({
-//   uri: 'http://localhost:3000/api/graphql-data'
-// });
 
  //client.query({ query: getProductsQuery }).then(result => console.log(result));
  export interface mainProps {
@@ -27,19 +24,19 @@ const Products = ({products}: mainProps ) => {
   if(data)
  return (
     <section className="products">
-      {data.products.map((products: Product) => (
-        <div key={products.sku} className="product">
-          <img src={products.image} alt={products.name} />
-          <h2>{products.name}</h2>
+      {data.products.map((product: Product) => (
+        <div key={product.sku} className="product">
+          <img src={product.image} alt={product.name} />
+          <h2>{product.name}</h2>
           <p className="price">
             {formatCurrencyString({
-              value: products.price,
-              currency: products.currency,
+              value: product.price,
+              currency: product.currency,
             })}
           </p>
           <button
             className="cart-style-background"
-            onClick={() => addItem(products)}
+            onClick={() => addItem(product)}
           >
             Add to cart
           </button>

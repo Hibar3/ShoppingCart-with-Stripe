@@ -26,16 +26,7 @@ const Layout = ({
     
     </Head>
     <div className="container">
-      <header>
-        <div className="header-content">
-          
-          <h1>
-            <span className="light">Shopping Cart</span>
-            <br />
-            A Simple Shopping Cart Demo made with Next.js 🛍
-          </h1>
-        </div>
-      </header>
+      
       {children}
     </div>
   </>

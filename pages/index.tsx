@@ -14,7 +14,16 @@ const IndexPage: NextPage = () => {
   const classes = useStyles();
   return (
     <Layout title="Shopping Cart Demo">
-      
+      <header>
+        <div className="header-content">
+          
+          <h1>
+            <span className="light">Shopping Cart</span>
+            <br />
+            A Simple Shopping Cart Demo made with Next.js 🛍
+          </h1>
+        </div>
+      </header>
       <div>
       <Link as={`/cartpage`} href="/cartpage">
          <Button  className={classes.customButton}>

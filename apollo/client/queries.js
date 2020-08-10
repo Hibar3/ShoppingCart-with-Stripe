@@ -3,10 +3,13 @@ import { gql } from 'apollo-boost';
 const getProductsQuery = gql `
 {
     products {
-        ProductID
-        ProductName
-        UnitPrice
-        UnitsInStock
+        name
+        description
+        sku
+        price
+        image
+  	    attribution
+  	    currency
     }
 }
 `;

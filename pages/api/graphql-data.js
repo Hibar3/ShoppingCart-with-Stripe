@@ -1,11 +1,7 @@
 import { ApolloServer, gql } from "apollo-server-micro";
 
-
 import { schema } from '../../apollo/server/schema';
 //Use [Products] for []
-
-
-
 
 const server = new ApolloServer({ schema});
 

@@ -11,7 +11,6 @@ const IndexPage: NextPage = () => {
      
       <div>
       <Cart>
-          
           <Products />
         </Cart>
       </div>

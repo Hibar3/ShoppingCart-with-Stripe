@@ -1,45 +1,41 @@
 //import products from '../data/products.json'
+import { GetStaticProps } from 'next'
 import { useShoppingCart, formatCurrencyString, Product } from 'use-shopping-cart'
 import ApolloClient, { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/client';
 import { getProductsQuery } from '../apollo/client/queries';
 import { IProductList } from '../interface/IProductList';
 
-// const client = new ApolloClient({
-//   uri: 'http://localhost:3000/api/graphql-data'
-// });
-
- //client.query({ query: getProductsQuery }).then(result => console.log(result));
- export interface mainProps {
+export interface Props {
   products?: IProductList[];
 }
 
 
-const Products = ({products}: mainProps ) => {
-  const { addItem, removeItem } = useShoppingCart()
-  
-  const { loading, error, data } =  useQuery<IProductList>(getProductsQuery, {
-    variables: {products},
-  });
-  if (loading) return <p>Loading...</p>;;
-  if (error) return <p>Error: {error.message}</p>;
-  console.log(data)
-  if(data)
- return (
+const Products = ({products}: Props ) => {
+  const { addItem, removeItem } = useShoppingCart();
+ // getStaticProps({ products });
+ const { loading, error, data } =  useQuery<IProductList>(getProductsQuery, {
+  variables: {products},
+});
+if (loading) return <p>Loading...</p>;
+if (error) return <p>Error: {error.message}</p>;
+  console.log({ data })
+  const productList = { productList: data }
+  return (
     <section className="products">
-      {data.products.map((products: Product) => (
-        <div key={products.sku} className="product">
-          <img src={products.image} alt={products.name} />
-          <h2>{products.name}</h2>
+      {data?.products.map((product: Product) => (
+        <div key={product.sku} className="product">
+          <img src={product.image} alt={product.name} />
+          <h2>{product.name}</h2>
           <p className="price">
             {formatCurrencyString({
-              value: products.price,
-              currency: products.currency,
+              value: product.price,
+              currency: product.currency,
             })}
           </p>
           <button
             className="cart-style-background"
-            onClick={() => addItem(products)}
+            onClick={() => addItem(product)}
           >
             Add to cart
           </button>
@@ -55,30 +51,37 @@ const Products = ({products}: mainProps ) => {
   )
 }
 
-// export async function getStaticProps({products}) {
-//   await client.query<IProductList>({
-//     query: getProductsQuery,
-//     variables: {products}
-//   });
-
-//   return {
-//     props: {
-//       initialApolloState: client.cache.extract(),
-//     },
-//   }
-// }
-
-// Products.getInitialProps = async ({products}: mainProps) => {
-//    const { loading, error, data } =  useQuery<IProductList>(getProductsQuery, {
+// export const getStaticProps = async ({products}: Props) => {
+//   // Example for including static props in a Next.js function component page.
+//   // Don't forget to include the respective types for any props passed into
+//   // the component.
+//   const { loading, error, data } =  useQuery<IProductList>(getProductsQuery, {
 //     variables: {products},
 //   });
+//   if (loading) return <p>Loading...</p>;;
+//   if (error) return <p>Error: {error.message}</p>;
+//   console.log(data)
+//   if (data) {
+//     //const response = await fetch("https://graphqlzero.almansi.me/api");
+//     const productList = data;
+//     return { products: productList }
+//   }
+  
+// }
+
+// Products.getInitialProps = async ({products}: Props) => {
+//    const { loading, error, data } =  useQuery<IProductList>(getProductsQuery, {
+//     variables: {products},
+//    });
+//    const response = await fetch("https://graphqlzero.almansi.me/api");
+//     const ownersList = await response.json();
 //   if (loading) return null;
 //   if (error) return `Error! ${error}`;
-//   // const { data: { data } } = useQuery(getProductsQuery);
-//   // const ProductList: IProductList[] | undefined = data;
-//   // console.log(ProductList)
 //   console.log(data)
-//   return { products: data};
+   
+//     const productList = data;
+//     return { products: productList }
+  
 // }
 
 export default Products

@@ -1,4 +1,3 @@
-//import products from '../data/products.json'
 import { GetStaticProps } from 'next'
 import { useShoppingCart, formatCurrencyString, Product } from 'use-shopping-cart'
 import ApolloClient, { gql } from 'apollo-boost';

@@ -13,28 +13,28 @@
   {
     "name": "Pizza",
     "description": "Pepperoni pizza",
-    "sku": "sku_Pizza",
+    "sku": "sku_GBJ2Ep8246qeeT",
     "price": 1000,
     "image": "https://womanexpertus.com/wp-content/uploads/2018/08/kur-i-gribami-225x150.jpg",
-    "attribution": "Photo by Jonathan Pielmayer on Unsplash",
+    "attribution": "Pizza",
     "currency": "MYR"
   },
   {
     "name": "Kitkat",
     "description": "Choco flavour",
-    "sku": "sku_Kitkat",
+    "sku": "sku_GBJ2Ep8246qeeT",
     "price": 300,
     "image": "https://i.ebayimg.com/images/g/FmkAAOSweqdefEAk/s-l225.jpg",
-    "attribution": "Photo by Jonathan Pielmayer on Unsplash",
+    "attribution": "Kitkat",
     "currency": "MYR"
   },
   {
     "name": "Ice cream",
     "description": "Vanila flavoer",
-    "sku": "sku_IceCream",
+    "sku": "sku_GBJ2Ep8246qeeT",
     "price": 100,
     "image": "https://vignette.wikia.nocookie.net/cookingfever/images/2/24/Ice-Cream-Bar-Chocolate-Ice-Cream-3.png/revision/latest/scale-to-width-down/340?cb=20170829022635",
-    "attribution": "Photo by Jonathan Pielmayer on Unsplash",
+    "attribution": "Vanila",
     "currency": "MYR"
   }
 ];

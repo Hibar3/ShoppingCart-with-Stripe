@@ -30,8 +30,10 @@ const CartSummary = () => {
     )
 
     if (response.statusCode === 500) {
-      console.error(response.message)
+      console.error( JSON.stringify( (response)))
       return
+    } else {
+      console.log(response)
     }
 
     redirectToCheckout({ sessionId: response.id })
@@ -50,6 +52,7 @@ const CartSummary = () => {
 
       {/* Redirects the user to Stripe */}
       <StripeTestCards />
+      <p style={{fontFamily:'italic', color: 'grey'}} >All items are registered with same id from stripe for sake of testing</p>
       <button
         className="cart-style-background"
         type="submit"

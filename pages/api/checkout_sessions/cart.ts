@@ -9,7 +9,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
  * so you know the pricing information is accurate.
  */
 import { validateCartItems } from 'use-shopping-cart/src/serverUtil'
-import inventory from '../../../data/products.json'
+//**Should load from own db server or check with Api if products is registerd in Stripe dashbord
+import inventory from '../../../data/products.json' 
 
 import Stripe from 'stripe'
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {

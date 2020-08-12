@@ -11,6 +11,10 @@ Use the `4000000000003220` test card number to trigger a 3D Secure challenge flo
 
 Read more about testing on Stripe at https://stripe.com/docs/testing.
 
+<details open><summary>Shopping Cart Checkout Demo</summary>
+<img src="./public/capture.gif" alt="A gif of the Shopping Cart Checkout payment page." align="center">
+</details>
+
 ### Required configuration
 
 Copy the `.env.local.example` file into a file named `.env.local` in the root directory of this project:

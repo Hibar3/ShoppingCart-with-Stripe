@@ -22,7 +22,10 @@ const Products = ({products}: Props ) => {
   variables: {products},
 });
 if (loading) return <p>Loading...</p>;
-if (error) return <p>Error: {error.message}</p>;
+  if (error) {
+    console.log(error)
+    return <p>Error: {error.message}</p>;
+}
   console.log({ data })
   const productList = { productList: data }
   return (

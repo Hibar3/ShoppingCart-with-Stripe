@@ -29,6 +29,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
+    "mongodb": "^3.6.0",
     "next": "latest",
     "next-with-apollo": "^5.1.0",
     "react": "^16.12.0",

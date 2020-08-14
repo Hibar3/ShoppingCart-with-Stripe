@@ -2,12 +2,13 @@ import { ApolloServer, gql } from "apollo-server-micro";
 
 export const typeDefs = gql`
   type Products {
+    id:Int
     name: String
     description: String
-    sku: String,
-    price: Int,
-    image: String,
-    attribution: String,
+    sku: String
+    price: Int
+    image: String
+    attribution: String
     currency: String
   }
   type Query {

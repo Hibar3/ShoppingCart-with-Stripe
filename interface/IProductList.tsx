@@ -1,5 +1,6 @@
 export interface IProductList{
   products: any;
+  id: number;
   name: string;
   description: string;
   sku: string;

@@ -1,5 +1,6 @@
-import { GetStaticProps } from 'next'
-import { useShoppingCart, formatCurrencyString, Product } from 'use-shopping-cart'
+import { GetStaticProps } from 'next';
+import { useState } from 'react';
+import { useShoppingCart, formatCurrencyString, Product } from 'use-shopping-cart';
 import ApolloClient, { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/client';
 import { getProductsQuery } from '../apollo/client/queries';
@@ -8,6 +9,8 @@ import { IProductList } from '../interface/IProductList';
 // @material-ui/core components
 import { Button } from '@material-ui/core'
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Collapse from '@material-ui/core/Collapse';
+import { Alert } from '@material-ui/lab';
 
 export interface Props {
   products?: IProductList[];
@@ -17,6 +20,17 @@ export interface Props {
 const Products = ({products}: Props ) => {
   const { addItem, removeItem } = useShoppingCart();
   const classes = useStyles();
+  const [open, setOpen] = useState(true);
+  const [close, setClose] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
  // getStaticProps({ products });
  const { loading, error, data } =  useQuery<IProductList>(getProductsQuery, {
   variables: {products},
@@ -29,6 +43,9 @@ if (loading) return <p>Loading...</p>;
   console.log({ data })
   const productList = { productList: data }
   return (
+    <div>
+      <Collapse in={!open}><Alert severity="success" onClose={() => setOpen(!false)} >An item has been added to cart</Alert> </Collapse> 
+      <Collapse in={close}><Alert severity="warning"  onClose={() => setClose(!true)} >An item has been removed</Alert> </Collapse> 
     <section className="products">
       {data?.products.map((product: Product) => (
         <div key={product.sku} className="product">
@@ -45,7 +62,11 @@ if (loading) return <p>Loading...</p>;
             color="secondary"
           //  size="medium"
             className={classes.customButton}
-            onClick={() => addItem(product)}
+            onClick={() => {
+              addItem(product);
+              setOpen(!true);
+              setClose(!true);
+            }}
           >
             Add to cart
           </Button>
@@ -53,13 +74,18 @@ if (loading) return <p>Loading...</p>;
             variant="contained"
             color="secondary"
             className={classes.customButton}
-            onClick={() => removeItem(product.sku)}
+            onClick={() => {
+              removeItem(product.sku);
+              setOpen(!false);
+              setClose(!false);
+            }}
           >
             Remove
           </Button>
         </div>
       ))}
-    </section>
+      </section>
+      </div>
   )
 }
 
